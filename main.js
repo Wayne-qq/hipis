@@ -1,8 +1,6 @@
-// Import Firebase and Firestore
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
 import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js";
 
-// Firebase configuration
 const firebaseConfig = {
     apiKey: "AIzaSyBN2nI_MPDLD8fHSkp9Dnno2rSL2hklcLA",
     authDomain: "haps-58ff8.firebaseapp.com",
@@ -13,41 +11,41 @@ const firebaseConfig = {
     measurementId: "G-05YZ3DN1FE"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app); // Initialize Firestore
 
-// Основні змінні
 let mainDate = ''; // Змінна для дати народження
 let username = ''; // Змінна для username з телеграму
 let balance = 0; // Змінна для балансу
 
-// Отримуємо Telegram API та ID користувача
 const tg = window.Telegram ? window.Telegram.WebApp : null;
-const tgUserId = tg && tg.initDataUnsafe?.user?.id ? tg.initDataUnsafe.user.id : 'Admin'; // Отримуємо Telegram ID або записуємо 'Admin', якщо ID не знайдено
+const tgUserId = tg && tg.initDataUnsafe?.user?.id ? tg.initDataUnsafe.user.id : ''; // Отримуємо Telegram ID
 username = tg && tg.initDataUnsafe?.user?.username ? `@${tg.initDataUnsafe.user.username}` : 'Unknown'; // Записуємо @username або 'Unknown', якщо не знайдено
 
-// Перевірка наявності користувача в базі даних
+// Функція для перевірки користувача
 async function checkUserExists() {
+    if (!tgUserId) {
+        alert('Telegram ID не знайдено. Ви не можете продовжити.');
+        document.querySelector('.main__date').style.display = 'none';
+        return; // Зупиняємо виконання, якщо немає Telegram ID
+    }
+
     const docRef = doc(db, "users", tgUserId);
     const docSnap = await getDoc(docRef);
     
     if (docSnap.exists()) {
         console.log("Користувач вже існує в базі даних");
-        // Якщо користувач вже є в базі, ховаємо блок з датою
         document.querySelector('.main__date').style.display = 'none';
         document.querySelector('.main__home').style.display = 'block';
     } else {
-        // Якщо користувача не існує, показуємо блок з перевіркою дати
         document.querySelector('.main__date').style.display = 'block';
     }
 }
 
-// Функція для збереження даних користувача в базу
+// Функція для збереження даних користувача
 async function saveUserData(dateOfBirth) {
-    const docRef = doc(db, "users", tgUserId); // Використовуємо Telegram ID або Admin
+    const docRef = doc(db, "users", tgUserId);
 
-    // Записуємо всі дані в базу (dateOfBirth, username, balance)
     try {
         await setDoc(docRef, {
             dateOfBirth: dateOfBirth,
@@ -60,13 +58,12 @@ async function saveUserData(dateOfBirth) {
     }
 }
 
-// Обробка введення дати
+// Форматування введеної дати
 document.getElementById('dateInput').addEventListener('input', function (e) {
     let input = e.target;
     let value = input.value.replace(/\D/g, ''); // Забираємо все, що не є цифрою
     let formattedValue = '';
 
-    // Форматуємо дату у вигляді DD/MM/YYYY
     if (value.length > 0) {
         formattedValue += value.substring(0, 2); // День
     }
@@ -78,7 +75,6 @@ document.getElementById('dateInput').addEventListener('input', function (e) {
     }
     input.value = formattedValue;
 
-    // Валідація дня, місяця та року
     const [day, month, year] = formattedValue.split('/').map(Number);
     let isValid = true;
 
@@ -92,7 +88,6 @@ document.getElementById('dateInput').addEventListener('input', function (e) {
         isValid = false;
     }
 
-    // Якщо дата невалідна, робимо бордер червоним
     if (!isValid && formattedValue.length === 10) {
         input.classList.add('invalid');
     } else {
@@ -100,33 +95,28 @@ document.getElementById('dateInput').addEventListener('input', function (e) {
     }
 });
 
-// Обробка натискання клавіші Enter або кнопки "Далі" на мобільному
+// Обробка натискання клавіш для збереження дати
 document.getElementById('dateInput').addEventListener('keydown', function (e) {
     if (e.key === 'Enter' || e.key === 'Done') { // Для ПК Enter, для мобільних Done
         saveDate();
     }
 });
 
-// Функція для збереження дати і запису користувача в базу
+// Функція для збереження дати
 async function saveDate() {
     const input = document.getElementById('dateInput');
     const formattedValue = input.value;
 
-    // Перевірка, чи правильно введена дата (довжина 10 символів)
     if (formattedValue.length === 10 && !input.classList.contains('invalid')) {
         mainDate = formattedValue; // Зберігаємо дату у змінну
         console.log("Дата збережена:", mainDate);
 
-        // Перевіряємо чи користувач існує і записуємо дані
         const docRef = doc(db, "users", tgUserId);
         const docSnap = await getDoc(docRef);
 
         if (!docSnap.exists()) {
-            // Якщо користувача не існує, записуємо його
             await saveUserData(mainDate);
         }
-
-        // Ховаємо блок з датою і показуємо блок з користувачем
         document.querySelector('.main__date').style.display = 'none';
         document.querySelector('.main__home').style.display = 'block';
 
@@ -135,14 +125,7 @@ async function saveDate() {
     }
 }
 
-// Викликаємо функцію для перевірки користувача при завантаженні сторінки
-checkUserExists();
-
-
-
-
-
-// ПРЕЛОАДЕР ПРЕЛОАДЕР ПРЕЛОАДЕР ПРЕЛОАДЕР
+// Прелоадер
 window.addEventListener('load', function() {
     setTimeout(function() {
         const preloader = document.querySelector('.preloader');
@@ -150,12 +133,21 @@ window.addEventListener('load', function() {
             preloader.style.display = 'none';
         }
 
-        // Після приховування прелодера перевіряємо, чи користувач є в базі
-        checkUserExists();
+        // Навіть якщо ID не отримано, все одно показати секцію
+        if (tgUserId) {
+            checkUserExists();
+        } else {
+            document.querySelector('.main__home').style.display = 'block';
+            alert('Telegram ID не знайдено, відображаємо домашню секцію.');
+        }
     }, 2000);
 });
 
-
+// Відображення імені користувача
+const userButton = document.getElementById('UserShow');
+if (userButton) {
+    userButton.textContent = username !== 'Unknown' ? username : 'Admin'; // Показуємо username або "Admin"
+}
 
 
 
