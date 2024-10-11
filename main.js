@@ -1,8 +1,8 @@
-// Import Firebase and Firestore
+// Firebase і Firestore ініціалізація
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
 import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js";
 
-// Firebase configuration
+// Firebase конфіг
 const firebaseConfig = {
     apiKey: "AIzaSyBN2nI_MPDLD8fHSkp9Dnno2rSL2hklcLA",
     authDomain: "haps-58ff8.firebaseapp.com",
@@ -13,19 +13,37 @@ const firebaseConfig = {
     measurementId: "G-05YZ3DN1FE"
 };
 
-// Initialize Firebase
+// Ініціалізація Firebase
 const app = initializeApp(firebaseConfig);
-const db = getFirestore(app); // Initialize Firestore
+const db = getFirestore(app); // Firestore
 
 // Основні змінні
 let mainDate = ''; // Змінна для дати народження
-let username = ''; // Змінна для username з телеграму
-let balance = 0; // Змінна для балансу
+let username = ''; // Username з телеграму
+let balance = 0; // Баланс користувача
+let tgUserId = ''; // ID користувача
 
-// Отримуємо Telegram API та ID користувача
+// Отримуємо Telegram WebApp API та ID користувача
 const tg = window.Telegram ? window.Telegram.WebApp : null;
-const tgUserId = tg && tg.initDataUnsafe?.user?.id ? tg.initDataUnsafe.user.id : 'Admin'; // Отримуємо Telegram ID або записуємо 'Admin', якщо ID не знайдено
-username = tg && tg.initDataUnsafe?.user?.username ? `@${tg.initDataUnsafe.user.username}` : 'Unknown'; // Записуємо @username або 'Unknown', якщо не знайдено
+
+// Перевіряємо чи доступний об'єкт tg
+if (tg) {
+    tg.ready(); // Ініціалізуємо Telegram WebApp
+
+    // Перевіряємо наявність даних користувача
+    if (tg.initDataUnsafe?.user?.id) {
+        tgUserId = tg.initDataUnsafe.user.id; // Отримуємо ID користувача
+        username = `@${tg.initDataUnsafe.user.username}` || 'Unknown'; // Отримуємо username
+        console.log("Telegram ID користувача: ", tgUserId);
+        console.log("Username користувача: ", username);
+    } else {
+        console.log("Telegram ID не знайдено, використовується Admin.");
+        tgUserId = 'Admin'; // Використовуємо 'Admin', якщо ID не знайдено
+    }
+} else {
+    console.log("Telegram WebApp API не знайдено.");
+    tgUserId = 'Admin'; // Використовуємо 'Admin', якщо API не працює
+}
 
 // Перевірка наявності користувача в базі даних
 async function checkUserExists() {
@@ -100,7 +118,7 @@ document.getElementById('dateInput').addEventListener('input', function (e) {
     }
 });
 
-// Обробка натискання клавіші Enter або кнопки "Далі" на мобільному
+// Обробка натискання клавіші Enter або кнопки "Далі"
 document.getElementById('dateInput').addEventListener('keydown', function (e) {
     if (e.key === 'Enter' || e.key === 'Done') { // Для ПК Enter, для мобільних Done
         saveDate();
@@ -138,6 +156,9 @@ async function saveDate() {
 // Викликаємо функцію для перевірки користувача при завантаженні сторінки
 checkUserExists();
 
+
+
+
 // ПРЕЛОАДЕР ПРЕЛОАДЕР ПРЕЛОАДЕР ПРЕЛОАДЕР
 window.addEventListener('load', function() {
     setTimeout(function() {
@@ -148,7 +169,7 @@ window.addEventListener('load', function() {
 
         // Після приховування прелодера перевіряємо, чи користувач є в базі
         checkUserExists();
-    }, 3000);
+    }, 2000);
 });
 
 
@@ -194,3 +215,5 @@ document.getElementById('UserShow2').addEventListener('click', function() {
     mainWallet.style.display = 'none';
     mainUser.style.display = 'block';
 });
+
+
