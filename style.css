@@ -1,0 +1,442 @@
+.preloader {
+    background-color: #000;
+    height: 100vh;
+}
+
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.preloader svg {
+    margin-top: 281px;
+    margin-bottom: 24px;
+}
+
+.preloader p {
+    color: #FFF;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 200;
+    line-height: normal;
+    text-transform: uppercase;
+}
+
+.main__date {
+    background-color: #000;
+    height: 100vh;
+}
+
+.main__date img {
+    margin-top: 80px;
+    margin-bottom: 92px;
+    height: 124px;
+    width: 102px;
+}
+
+.data__input {
+    border-radius: 61px;
+    border: 1px solid #FFF;
+    background-color: #000;
+    
+    color: #939393;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 200;
+    line-height: normal;
+    text-transform: uppercase;
+    height: 49px;
+    width: 236px;
+    outline: none;
+}
+
+
+.data__input.invalid {
+    border: 1.2px solid #ff6d6d;
+}
+
+.main__date p {
+    margin-top: 88px;
+    color: #FFF;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 200;
+    line-height: normal;
+    text-transform: uppercase;
+    width: 248px;
+}
+
+.main__home {
+    background-color: #000;
+    height: 100vh;
+}
+
+.home__top-btn {
+    display: flex;
+    align-items: center;
+    margin-top: 31px;
+}
+
+.home__top-btn svg {
+    padding: 10px;
+    border-radius: 13px;
+    border: 1px solid #FFF;
+    background-color: #FFF;
+    margin-right: 10px;
+}
+
+.home__top-btn button {
+    color: #ffffff;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    padding: 10.5px 35px;
+    border: 1px solid #FFF;
+    border-radius: 13px;
+    background: #000000;
+}
+
+
+.balance {
+    display: flex;
+    align-items:end;
+    margin-top: 73px;
+    height: 59px;
+}
+
+.balance__num {
+    color: #FFF;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 100;
+    line-height: normal;
+    text-transform: uppercase;
+}
+
+.balance__name {
+    color: #FFF;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 100;
+    line-height: normal;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    margin-left: 10px
+}
+
+.main__home img {
+    margin-top: 47px;
+    margin-bottom: 44px;
+    height: 147px;
+    width: 147px;
+}
+
+.birthdays {
+    color: #FFF;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+}
+
+.birthdays__txt {
+    color: #FFF;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 100;
+    line-height: normal;
+    text-transform: uppercase;
+}
+
+.happy__btn {
+    margin-top: 42px;
+    color: #000;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    border-radius: 26px;
+    background: #FFF;
+    padding: 11px 18.5px;
+    border: none;
+}
+
+
+
+.main__user {
+    height: 100vh;
+    background-color: #000;
+}
+
+.user__top-btn {
+    display: flex;
+    align-items: center;
+    margin-top: 31px;
+
+}
+
+.user__top-btn p {
+    color: #000;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+    border-radius: 13px;
+    border: 1px solid #FFF;
+    background: #FFF;
+    padding: 10.5px 35px;
+}
+
+.user__top-btn svg {
+    border-radius: 13px;
+    border: 1px solid #FFF;
+    background: #000;
+    padding: 10px;
+    margin-right: 10px;
+}
+
+
+
+.date__num {
+    color: #FFF;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 27px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    text-transform: uppercase;
+    margin-top: 66px;
+}
+
+
+.date__info {
+    color: #FFF;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 27px;
+    font-style: normal;
+    font-weight: 100;
+    line-height: normal;
+    text-transform: uppercase;
+    margin-bottom: 36px;
+}
+
+.number__days {
+    color: #FFF;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 96px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.main__user img {
+    margin-top: 46px;
+    width: 164px;
+    height: 116px;
+}
+
+.connect__wallet {
+    color: #000;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+    border-radius: 26px;
+    background: #FFF;
+    padding: 11px 20px;
+    margin-top: 76px;
+    border: none;
+}
+
+
+.main__wallet {
+    background-color: #000;
+    height: 100vh;
+}
+
+.wallet__top-btn {
+    display: flex;
+    align-items: center;
+    margin-top: 31px;
+}
+
+.wallet__top-btn svg {
+    border-radius: 13px;
+    background-color: #FFF;
+    padding: 10px;
+    margin-right: 10px;
+}
+
+.wallet__top-btn button {
+    border-radius: 13px;
+    background-color: #FFF;
+    padding: 10.5px 35px;
+    border: none;
+    color: #000;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.main__wallet input {
+    border-radius: 61px;
+    border: 1px solid #FFF;
+    background-color: #000;
+
+    color: #939393;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 200;
+    line-height: normal;
+    padding: 16px 49.5px;
+    margin-top: 230px;
+}
+
+
+.wallet__info {
+    color: #FFF;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 200;
+    line-height: normal;
+    text-transform: uppercase;
+    width: 245px;
+    margin-top: 88px;
+}
+
+
+
+
+.main__reconnect {
+    background-color: #000;
+    height: 100vh;
+}
+
+.reconnect__top-btn {
+    display: flex;
+    align-items: center;
+    margin: 31px;
+}
+
+
+.reconnect__top-btn svg {
+    border-radius: 13px;
+    background-color: #FFF;
+    padding: 10px;
+    margin-right: 10px;
+}
+
+.reconnect__top-btn p {
+    border-radius: 13px;
+    background-color: #FFF;
+    padding: 10.5px 35px;
+
+    color: #000;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+
+
+.connected__wallet {
+    border-radius: 26px;
+    border: 1px solid #FFF;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    margin-top: 70px;
+}
+
+.connected__wallet p {
+    color: #FFF;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 200;
+    line-height: normal;
+
+    border-radius: 26px;
+    border: 1px solid #ffffff;
+    padding: 7px 30px;
+    margin-left: 5px;
+}
+
+.balloon-img {
+    margin-top: 66px;
+    width: 121px;
+    height: 121px;
+    flex-shrink: 0;
+}
+
+.another__wallet-btn {
+    margin-top: 66px;
+    color: #000;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+    border-radius: 26px;
+    background: #FFF;
+    padding: 11px 21px;
+    border: none;
+}
+
+.reconnect__txt {
+    margin-top: 66px;
+    color: #FFF;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 200;
+    line-height: normal;
+    text-transform: uppercase;
+    width: 246px;
+}
