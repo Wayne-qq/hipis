@@ -18,9 +18,18 @@ let mainDate = ''; // Змінна для дати народження
 let username = ''; // Змінна для username з телеграму
 let balance = 0; // Змінна для балансу
 
+// Ініціалізуємо WebApp Telegram
 const tg = window.Telegram ? window.Telegram.WebApp : null;
-const tgUserId = tg && tg.initDataUnsafe?.user?.id ? tg.initDataUnsafe.user.id : ''; // Отримуємо Telegram ID
-username = tg && tg.initDataUnsafe?.user?.username ? `@${tg.initDataUnsafe.user.username}` : 'Unknown'; // Записуємо @username або 'Unknown', якщо не знайдено
+let tgUserId = ''; // Змінна для збереження Telegram ID
+
+// Отримуємо дані користувача
+if (tg && tg.initDataUnsafe?.user?.id) {
+    tgUserId = tg.initDataUnsafe.user.id; // Записуємо Telegram ID
+    username = tg.initDataUnsafe.user.username ? `@${tg.initDataUnsafe.user.username}` : 'Unknown'; // Записуємо @username або 'Unknown', якщо не знайдено
+} else {
+    alert('Telegram ID не знайдено.');
+    document.querySelector('.main__home').style.display = 'block';
+}
 
 // Функція для перевірки користувача
 async function checkUserExists() {
@@ -48,6 +57,7 @@ async function saveUserData(dateOfBirth) {
 
     try {
         await setDoc(docRef, {
+            userId: tgUserId, // Збереження Telegram ID
             dateOfBirth: dateOfBirth,
             username: username,
             balance: balance
@@ -142,6 +152,7 @@ window.addEventListener('load', function() {
         }
     }, 2000);
 });
+
 
 // Відображення імені користувача
 const userButton = document.getElementById('UserShow');
